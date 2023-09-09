@@ -21,31 +21,22 @@ const SignUpForm = () => {
       });
   
       // Validate as the user types
-      validateField(name, value);
+      validateField();
     };
   
-    const validateField = (fieldName, value) => {
+    const validateField = () => {
       const updatedErrors = { ...errors };
   
-      switch (fieldName) {
-        case 'fullName':
-          updatedErrors.fullName = value.trim() === '' ? 'Full name is required' : '';
-          break;
-        case 'email':
-          // Use a simple regex for email validation
-          const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-          updatedErrors.email = !emailRegex.test(value) ? 'Email must be a valid address' : '';
-          break;
-        case 'password':
-          const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
-          updatedErrors.password = !passwordRegex.test(value)
-            ? 'Password must contain at least 5 characters with uppercase, lowercase, and a number'
-            : '';
-          break;
-        default:
-          break;
-      }
-  
+      updatedErrors.fullName = formData.fullName.trim() === '' ? 'Full name is required' : '';
+
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      updatedErrors.email = !emailRegex.test(formData.email) ? 'Email must be a valid address' : '';
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
+      updatedErrors.password = !passwordRegex.test(formData.password)
+        ? 'Password must contain at least 5 characters with uppercase, lowercase, and a number'
+        : '';
+
       setErrors(updatedErrors);
     };
   
@@ -89,7 +80,7 @@ const SignUpForm = () => {
               <span className="error">{errors.password}</span>
             </div>
     
-            <button type="submit">Sign Up</button>
+            <button type="submit" onClick={()=>validateField()}>Sign Up</button>
           </form>
         </div>
       );
