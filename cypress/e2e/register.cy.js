@@ -7,7 +7,7 @@ describe('Register page spec', () => {
   });
 
   // Empty form tests 
-  it('should display error on empy form', () => {
+  it('should display error on empty form', () => {
     cy.get('[data-cy="submit"]').click()
     cy.get('[data-cy="cy-error-email"]').should("exist")
     cy.get('[data-cy="cy-error-password"]').should("exist")
