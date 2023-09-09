@@ -73,13 +73,13 @@ const SignUpForm = () => {
                 value={formData.fullName}
                 onChange={handleChange}
               />
-              {errors.fullName && <span className="error">{errors.fullName}</span>}
+              {errors.fullName && <span className="error" data-cy="cy-error-fullname">{errors.fullName}</span>}
             </div>
     
             <div className="form-group">
               <label htmlFor="email">Email:</label>
               <input type="text" id="email" name="email" value={formData.email} onChange={handleChange} />
-              {errors.email && <span className="error">{errors.email}</span>}
+              {errors.email && <span className="error" data-cy="cy-error-email">{errors.email}</span>}
               
             </div>
      
@@ -93,11 +93,11 @@ const SignUpForm = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
-              {errors.password && <span className="error">{errors.password}</span>}
+              {errors.password && <span className="error" data-cy="cy-error-password">{errors.password}</span>}
             </div>
 
 
-            {success && <p className="success">Registered successfully</p>}
+            {success && <p className="success" data-cy="cy-success-message">Registered successfully</p>}
             
             <button type="submit" data-cy="submit" onClick={()=>validateField()}>Sign Up</button>
           </form>
