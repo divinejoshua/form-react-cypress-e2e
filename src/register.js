@@ -95,7 +95,7 @@ const SignUpForm = () => {
 
             {success && <p className="success">Registered successfully</p>}
             
-            <button type="submit" onClick={()=>validateField()}>Sign Up</button>
+            <button type="submit" data-cy="submit" onClick={()=>validateField()}>Sign Up</button>
           </form>
         </div>
       );
