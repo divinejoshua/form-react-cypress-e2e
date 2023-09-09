@@ -78,7 +78,7 @@ const SignUpForm = () => {
               {errors.email && <span className="error">{errors.email}</span>}
               
             </div>
-    
+     
             <div className="form-group">
               <label htmlFor="password">Password:</label>
               <input
