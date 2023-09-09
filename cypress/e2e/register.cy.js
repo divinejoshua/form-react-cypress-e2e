@@ -2,9 +2,12 @@
 
 describe('Register page spec', () => {
 
+  beforeEach(() => {
+    cy.visit("http://localhost:3000");
+  });
+
   // Empty form tests 
   it('should display error on empy form', () => {
-    cy.visit('http://localhost:3000')
     cy.get('[data-cy="submit"]').click()
     cy.get('[data-cy="cy-error-email"]').should("exist")
     cy.get('[data-cy="cy-error-password"]').should("exist")
@@ -14,7 +17,6 @@ describe('Register page spec', () => {
 
   // Invalid email tests 
   it('should have an error when email is invalid', () => {
-    cy.visit('http://localhost:3000')
     cy.get('[data-cy="cy-email-input"]').type("testemail")
     cy.get('[data-cy="submit"]').click()
     cy.get('[data-cy="cy-error-email"]').should("exist")
@@ -24,7 +26,6 @@ describe('Register page spec', () => {
 
   // Wrong password tests 
   it('should have an error when password patterns is wrong', () => {
-    cy.visit('http://localhost:3000')
     cy.get('[data-cy="cy-password-input"]').type("testpassword")
     cy.get('[data-cy="submit"]').click()
     cy.get('[data-cy="cy-error-password"]').should("exist")
@@ -45,7 +46,6 @@ describe('Register page spec', () => {
 
   // Valid form input 
   it('should have an error when email is invalid', () => {
-    cy.visit('http://localhost:3000')
     cy.get('[data-cy="cy-fullname-input"]').type("testemail")
     cy.get('[data-cy="cy-email-input"]').type("test@email.com")
     cy.get('[data-cy="cy-password-input"]').type("TestPassword1234")
