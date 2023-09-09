@@ -12,7 +12,10 @@ const SignUpForm = () => {
       email: '',
       password: '',
     });
-  
+
+    const [success, setSuccess] = useState(false)
+
+
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData({
@@ -44,11 +47,14 @@ const SignUpForm = () => {
       e.preventDefault();
       // Perform form submission here
       // You can add your logic to send the data to the server or perform further actions
+      if (errors.fullName === "" && errors.email=== "" && errors.password=== ""){
+            console.log("success")
+      }
     };
 
     return (
         <div className="form-container">
-          <h2>Sign Up</h2>
+          <h2>Register</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="fullName">Full Name:</label>
@@ -79,6 +85,10 @@ const SignUpForm = () => {
               />
               <span className="error">{errors.password}</span>
             </div>
+
+
+            <p className="success">Registered successfully</p>
+
     
             <button type="submit" onClick={()=>validateField()}>Sign Up</button>
           </form>
