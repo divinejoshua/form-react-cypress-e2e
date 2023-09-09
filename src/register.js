@@ -72,13 +72,14 @@ const SignUpForm = () => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
+                data-cy="cy-fullname-input"
               />
               {errors.fullName && <span className="error" data-cy="cy-error-fullname">{errors.fullName}</span>}
             </div>
     
             <div className="form-group">
               <label htmlFor="email">Email:</label>
-              <input type="text" id="email" name="email" value={formData.email} onChange={handleChange} />
+              <input type="text" id="email" name="email" value={formData.email} onChange={handleChange} data-cy="cy-email-input"/>
               {errors.email && <span className="error" data-cy="cy-error-email">{errors.email}</span>}
               
             </div>
@@ -92,6 +93,7 @@ const SignUpForm = () => {
                 autoComplete="true"
                 value={formData.password}
                 onChange={handleChange}
+                data-cy="cy-password-input"
               />
               {errors.password && <span className="error" data-cy="cy-error-password">{errors.password}</span>}
             </div>

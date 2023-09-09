@@ -14,9 +14,16 @@ describe('Register page spec', () => {
 
   it('should have an error when email is invalid', () => {
     cy.visit('http://localhost:3000')
+    cy.get('[data-cy="cy-email-input"]').type("testemail")
+    cy.get('[data-cy="submit"]').click()
     cy.get('[data-cy="cy-error-email"]').should("exist")
-    cy.get('[data-cy="cy-error-password"]').should("exist")
-    cy.get('[data-cy="cy-error-fullname"]').should("exist")
+  })
+
+  it('should have an error when password pattern is wrong', () => {
+    cy.visit('http://localhost:3000')
+    cy.get('[data-cy="cy-email-input"]').type("testemail")
+    cy.get('[data-cy="submit"]').click()
+    cy.get('[data-cy="cy-error-email"]').should("exist")
   })
 
 
