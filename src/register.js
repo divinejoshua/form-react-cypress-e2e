@@ -26,21 +26,25 @@ const SignUpForm = () => {
       // Validate as the user types
       validateField();
     };
-  
+
     const validateField = () => {
-      const updatedErrors = { ...errors };
-  
-      updatedErrors.fullName = formData.fullName.trim() === '' ? 'Full name is required' : '';
+        const updatedErrors = { ...errors };
 
-      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      updatedErrors.email = !emailRegex.test(formData.email) ? 'Email must be a valid address' : '';
+        updatedErrors.fullName = formData.fullName.trim() === '' ? 'Full name is required' : '';
 
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
-      updatedErrors.password = !passwordRegex.test(formData.password)
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        updatedErrors.email = !emailRegex.test(formData.email) ? 'Email must be a valid address' : '';
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
+        updatedErrors.password = !passwordRegex.test(formData.password)
         ? 'Password must contain at least 5 characters with uppercase, lowercase, and a number'
         : '';
 
-      setErrors(updatedErrors);
+        setErrors(updatedErrors);
+
+        if (errors.fullName || errors.email || errors.password){
+            setSuccess(false);
+        }
     };
   
     const handleSubmit = (e) => {
@@ -48,7 +52,7 @@ const SignUpForm = () => {
       // Perform form submission here
       // You can add your logic to send the data to the server or perform further actions
       if (errors.fullName === "" && errors.email=== "" && errors.password=== ""){
-            console.log("success")
+            setSuccess(true);
       }
     };
 
@@ -65,13 +69,14 @@ const SignUpForm = () => {
                 value={formData.fullName}
                 onChange={handleChange}
               />
-              <span className="error">{errors.fullName}</span>
+              {errors.fullName && <span className="error">{errors.fullName}</span>}
             </div>
     
             <div className="form-group">
               <label htmlFor="email">Email:</label>
               <input type="text" id="email" name="email" value={formData.email} onChange={handleChange} />
-              <span className="error">{errors.email}</span>
+              {errors.email && <span className="error">{errors.email}</span>}
+              
             </div>
     
             <div className="form-group">
@@ -80,16 +85,16 @@ const SignUpForm = () => {
                 type="password"
                 id="password"
                 name="password"
+                autoComplete="true"
                 value={formData.password}
                 onChange={handleChange}
               />
-              <span className="error">{errors.password}</span>
+              {errors.password && <span className="error">{errors.password}</span>}
             </div>
 
 
-            <p className="success">Registered successfully</p>
-
-    
+            {success && <p className="success">Registered successfully</p>}
+            
             <button type="submit" onClick={()=>validateField()}>Sign Up</button>
           </form>
         </div>
