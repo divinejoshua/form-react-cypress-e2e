@@ -27,7 +27,7 @@ const SignUpForm = () => {
       validateField();
     };
 
-    const validateField = () => {
+    const validateField = (clickedBtn) => {
         const updatedErrors = { ...errors };
 
         updatedErrors.fullName = formData.fullName.trim() === '' ? 'Full name is required' : '';
@@ -42,8 +42,14 @@ const SignUpForm = () => {
 
         setErrors(updatedErrors);
 
-        if (errors.fullName || errors.email || errors.password){
+        if (updatedErrors.fullName || updatedErrors.email || updatedErrors.password){
             setSuccess(false);
+        } else if (updatedErrors.fullName === "" && updatedErrors.email=== "" && updatedErrors.password=== ""){
+
+            // If i click the submit button 
+            if(clickedBtn){
+              setSuccess(true);
+            }
         }
     };
   
@@ -51,9 +57,7 @@ const SignUpForm = () => {
       e.preventDefault();
       // Perform form submission here
       // You can add your logic to send the data to the server or perform further actions
-      if (errors.fullName === "" && errors.email=== "" && errors.password=== ""){
-            setSuccess(true);
-      }
+      validateField("clicked")
     };
 
     return (
